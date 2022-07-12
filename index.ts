@@ -7,7 +7,7 @@ app.use(Express.json());
 
 app.use(router);
 
-app.listen(process.env.PORT || 3008, ()=>{
-    console.log("Express running on http://localhost:3008");
+app.listen(process.env.PORT || 3007, ()=>{
+    console.log("Express running on http://localhost:3007");
     // console.log(process.env.DATABASE_URL);
 })
