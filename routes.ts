@@ -3,10 +3,10 @@ import statsControllers from "./controllers/statsControllers";
 
 const router = Router();
 
-router.get("/room", statsControllers.show);
-router.post("/room", statsControllers.create);
+router.get("/", statsControllers.show);
+router.post("/", statsControllers.create);
 
 // Test router
-router.get("/", (req, res)=> res.json({status: "ok"}))
+router.get("/room", (req, res)=> res.json({status: "ok"}))
 
 export default router;
