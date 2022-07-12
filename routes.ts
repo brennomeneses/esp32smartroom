@@ -6,8 +6,13 @@ const router = Router();
 const prisma = new PrismaClient();
 
 router.get("/", async (request, response)=>{
-    const allStats = await prisma.stats.findMany();
-    response.json(allStats);
+    try{
+        const allStats = await prisma.stats.findMany();
+        response.json(allStats);
+    }catch(err){
+        console.log(err);
+    }
+    
 });
 router.post("/", statsControllers.create);
 
