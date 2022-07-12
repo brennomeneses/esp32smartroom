@@ -12,6 +12,6 @@ router.get("/", async (request, response)=>{
 router.post("/", statsControllers.create);
 
 // Test router
-router.get("/test", (req, res)=> res.json({status: "ok"}))
+router.get("/test", async (req, res)=> res.json({status: "ok"}))
 
 export default router;
