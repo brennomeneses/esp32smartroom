@@ -4,8 +4,18 @@ import { Request, Response } from "express";
 const prisma = new PrismaClient();
 const statsControllers = {
     show: async (request: Request, response: Response) => {
-        const allStats = await prisma.stats.findMany();
-        response.json(allStats);
+        try{
+            const allStats = await (await prisma.stats.findMany()).map(e=>{
+                return({
+                    temperature: parseFloat(e.temperature),
+                    humidity: parseFloat(e.humidity),
+                    createdAt: e.createdAt,
+                })
+            });
+            response.json(allStats);
+        }catch(err){
+            response.status(400);
+        }
     },
     create: async (request: Request, response: Response) => {
         try{
