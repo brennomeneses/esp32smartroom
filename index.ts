@@ -9,5 +9,4 @@ app.use(router);
 
 app.listen(process.env.PORT || 3008, ()=>{
     console.log("Express running on http://localhost:3008");
-    console.log(process.env.DATABASE_URL);
-})
+});
