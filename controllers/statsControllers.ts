@@ -15,6 +15,12 @@ const statsControllers = {
     },
     create: async (request: Request, response: Response) => {
         try{
+            if(Object.keys(request.body).length === 0)
+                return (response.status(400).json({error: "no body parsed"}));
+            
+            if(!(request.body.umi || request.body.temp))
+                return (response.status(400).json({error: "body bad formated"}));
+
             const dataFech = await prisma.stats.create({
                 data:{
                     humidity: request.body.umi,
@@ -22,6 +28,14 @@ const statsControllers = {
                 }
             });
             response.json(dataFech);
+        }catch(err){
+            response.status(400);
+        }
+    },
+    destroy: async (request: Request, response: Response) => {
+        try{
+            const deleteStats = await prisma.stats.deleteMany({});
+            response.json(deleteStats);
         }catch(err){
             response.status(400);
         }
