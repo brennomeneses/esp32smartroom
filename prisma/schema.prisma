@@ -11,5 +11,5 @@ model Stats {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   humidity String
   temperature String
-  createdAt DateTime @default(now())
+  createdAt DateTime
 }

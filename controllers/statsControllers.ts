@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 const prisma = new PrismaClient();
 const statsControllers = {
     show: async (request: Request, response: Response) => {
-        const allStats =await (await prisma.stats.findMany()).map(e=>{
+        const allStats = await (await prisma.stats.findMany()).map(e=>{
             return({
                 humidity: parseFloat(e.humidity),
                 temperature: parseFloat(e.temperature),
@@ -24,7 +24,8 @@ const statsControllers = {
             const dataFech = await prisma.stats.create({
                 data:{
                     humidity: request.body.umi,
-                    temperature: request.body.temp
+                    temperature: request.body.temp,
+                    createdAt: new Date()
                 }
             });
             response.json(dataFech);
