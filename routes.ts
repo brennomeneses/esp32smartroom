@@ -5,7 +5,7 @@ import AuthenticateUser from "./middlewares/verifyToken";
 
 const router = Router();
 
-router.get("/login", loginController.handle);
+router.post("/login", loginController.handle);
 router.get("/", AuthenticateUser.checkToken, statsControllers.show);
 router.post("/", AuthenticateUser.checkToken, statsControllers.create);
 router.delete("/", AuthenticateUser.checkToken, statsControllers.destroy);
